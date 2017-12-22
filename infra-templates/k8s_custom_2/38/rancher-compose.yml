@@ -1,5 +1,5 @@
 .catalog:
-  name: Kubernetes-Custom-2
+  name: Kubernetes
   version: v1.8.3-rancher3-custom-2
   description: Rancher Kubernetes service
   minimum_rancher_version: v1.6.11-rc1
