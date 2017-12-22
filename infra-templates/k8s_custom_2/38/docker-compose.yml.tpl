@@ -276,14 +276,6 @@ kubectl-shell:
         - kubectl-shell-entry.sh
     image: {{$kubectldImage}}
     privileged: true
-    health_check:
-        port: 10240
-        interval: 2000
-        response_timeout: 2000
-        unhealthy_threshold: 3
-        healthy_threshold: 2
-        initializing_timeout: 60000
-        reinitializing_timeout: 60000
 
 
 scheduler:
@@ -373,15 +365,7 @@ rancher-ingress-controller:
         - --provider=rancher
     links:
         - kubernetes
-    health_check:
-        request_line: GET /healthz HTTP/1.0
-        port: 10241
-        interval: 2000
-        response_timeout: 2000
-        unhealthy_threshold: 3
-        healthy_threshold: 2
-        initializing_timeout: 60000
-        reinitializing_timeout: 60000
+
 {{- end }}
 
 rancher-kubernetes-auth:
@@ -393,15 +377,7 @@ rancher-kubernetes-auth:
         io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/kubernetes
         io.rancher.container.create_agent: "true"
         io.rancher.container.agent.role: environmentAdmin
-    health_check:
-        request_line: GET /healthcheck HTTP/1.0
-        port: 10240
-        interval: 2000
-        response_timeout: 2000
-        unhealthy_threshold: 3
-        healthy_threshold: 2
-        initializing_timeout: 60000
-        reinitializing_timeout: 60000
+
 
 {{- if eq .Values.ENABLE_ADDONS "true" }}
 addon-starter:
@@ -426,12 +402,5 @@ addon-starter:
         - addons-update.sh
     links:
         - kubernetes
-    health_check:
-        port: 10240
-        interval: 2000
-        response_timeout: 2000
-        unhealthy_threshold: 3
-        healthy_threshold: 2
-        initializing_timeout: 60000
-        reinitializing_timeout: 60000
+
 {{- end }}
