@@ -1,2 +1,2 @@
 # custom-catalog
-Customized Rancher Catalo
+Customized Rancher Catalog
